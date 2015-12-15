@@ -37,7 +37,7 @@ module Aliyun::Mqs
       conf.merge!(query: params.to_query) unless params.empty?
       @uri = URI::HTTP.build(conf)
       @method = method
-      @mqs_headers = mqs_headers.merge("x-mqs-version" => "2014-07-08")
+      @mqs_headers = mqs_headers.merge("x-mqs-version" => "2015-06-06")
     end
 
     def content type, values={}
@@ -64,6 +64,9 @@ module Aliyun::Mqs
         "Host" => uri.host
       }.merge(mqs_headers).reject{|k,v| v.nil?}
       begin
+        p uri.to_s
+        p body
+        p headers
         RestClient.send *[method, uri.to_s, body, headers].compact
       rescue RestClient::Exception => ex
         raise RequestException.new(ex)

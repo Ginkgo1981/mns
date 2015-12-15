@@ -56,6 +56,17 @@ module Aliyun::Mqs
       Message.new(self, result)
     end
 
+    def batch_peek_message number_of_messages=16
+      p 'a'
+      result = Request.get(messages_path, params: {numOfMessages: number_of_messages, peekonly: true})
+      p 'b'
+      messages = Hash.xml_array(result, "Messages")
+      p 'c'
+      messages.map{|message| 
+        BatchMessages.new(self, message)
+      }
+    end
+
     def queue_path
       "/#{name}"
     end
