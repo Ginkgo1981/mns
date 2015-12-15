@@ -1,4 +1,4 @@
-module Aliyun::Mqs
+module Aliyun::mns
   class BatchMessage
 
 

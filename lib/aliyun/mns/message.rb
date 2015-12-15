@@ -1,4 +1,4 @@
-module Aliyun::Mqs
+module Aliyun::mns
   class Message
 
     attr_reader :queue, :id, :body_md5, :body, :receipt_handle, :enqueue_at, :first_enqueue_at, :next_visible_at, :dequeue_count, :priority
@@ -19,12 +19,12 @@ module Aliyun::Mqs
 
     def delete
       check_receipt_handle
-      Aliyun::Mqs::Request.delete(queue.messages_path, params:{:ReceiptHandle => receipt_handle})
+      Aliyun::mns::Request.delete(queue.messages_path, params:{:ReceiptHandle => receipt_handle})
     end
 
     def change_visibility seconds
       check_receipt_handle
-      Aliyun::Mqs::Request.put(queue.messages_path, params:{:ReceiptHandle => receipt_handle, :VisibilityTimeout=>seconds})
+      Aliyun::mns::Request.put(queue.messages_path, params:{:ReceiptHandle => receipt_handle, :VisibilityTimeout=>seconds})
     end
 
     def to_s

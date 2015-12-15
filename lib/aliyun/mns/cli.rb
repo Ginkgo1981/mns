@@ -1,6 +1,6 @@
 require 'thor'
 
-module Aliyun::Mqs
+module Aliyun::mns
   class Cli < Thor
 
     desc "queues", "列出 QueueOwnerId 下的消息队列列表"

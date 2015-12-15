@@ -1,4 +1,4 @@
-module Aliyun::Mqs
+module Aliyun::mns
   class Queue
     attr_reader :name
 
@@ -10,9 +10,9 @@ module Aliyun::Mqs
       end
 
       def queues opts={}
-        mqs_options = {query: "x-mqs-prefix", offset: "x-mqs-marker", size: "x-mqs-ret-number"}
-        mqs_headers = opts.slice(*mqs_options.keys).reduce({}){|mqs_headers, item| k, v = *item; mqs_headers.merge!(mqs_options[k]=>v)}
-        response = Request.get("/", mqs_headers: mqs_headers)
+        mns_options = {query: "x-mns-prefix", offset: "x-mns-marker", size: "x-mns-ret-number"}
+        mns_headers = opts.slice(*mns_options.keys).reduce({}){|mns_headers, item| k, v = *item; mns_headers.merge!(mns_options[k]=>v)}
+        response = Request.get("/", mns_headers: mns_headers)
         Hash.xml_array(response, "Queues", "Queue").collect{|item| Queue.new(URI(item["QueueURL"]).path.sub!(/^\//, ""))}
       end
     end
@@ -57,22 +57,22 @@ module Aliyun::Mqs
     end
 
     def batch_peek_message number_of_messages=16
-      p 'a'
-      result = Request.get(messages_path, params: {numOfMessages: number_of_messages, peekonly: true})
-      p 'b'
+      p '1'
+      result = Request.get(messages_path, params: {peekonly: true, numOfMessages: number_of_messages})
       messages = Hash.xml_array(result, "Messages")
-      p 'c'
+      p '3'
       messages.map{|message| 
+        p 'x'
         BatchMessages.new(self, message)
       }
     end
 
     def queue_path
-      "/#{name}"
+      "/queues/#{name}"
     end
 
     def messages_path
-      "/#{name}/messages"
+      "/queues/#{name}/messages"
     end
 
   end

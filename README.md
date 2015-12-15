@@ -29,8 +29,7 @@ The configuration file should be stored at `~/.aliyun-mqs.yml`
 
 access_id:  'lUxxxxxxxx'
 key:        'VWxxxxxxxxxxxxxxxxxxxxx'
-region:     'cn-hangzhou'
-owner_id:   'ckxxxxxxxx'
+host:       'ckxxxxxxxx'
 
 ```
 
@@ -44,14 +43,12 @@ If you are going to use this gem in a rails environment. You need to create a co
 development:
 	access_id:  'lUxxxxxxxx'
 	key:        'VWxxxxxxxxxxxxxxxxxxxxx'
-	region:     'cn-hangzhou'
-	owner_id:   'ckxxxxxxxx'
+	host:       'host'
 
 production:
 	access_id:  'lUxxxxxxxx'
 	key:        'VWxxxxxxxxxxxxxxxxxxxxx'
-	region:     'cn-hangzhou'
-	owner_id:   'ckxxxxxxxx'
+	host:   'host'
 
 ```
 
@@ -63,8 +60,7 @@ At last you can also config the gem in place, by excute the following code befor
 Aliyun::Mqs.configure do |config|
   config.access_id = 'access-id'
   config.key = "key"
-  config.region = 'region'
-  config.owner_id = 'owner-id'
+  config.host = 'host'
 end
 ```
 

@@ -1,23 +1,23 @@
 # -*- encoding: utf-8 -*-
-# stub: aliyun-mqs 0.1.1 ruby lib
+# stub: aliyun-mns 0.1.1 ruby lib
 
 Gem::Specification.new do |s|
-  s.name = "aliyun-mqs"
+  s.name = "aliyun-mns"
   s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["mgampkay", "skinnyworm"]
   s.date = "2015-12-13"
-  s.description = "Non-official SDK for Aliyun MQS"
+  s.description = "Non-official SDK for Aliyun MNS"
   s.email = ["mgampkay@gmail.com", "askinnyworm@gmail.com"]
-  s.executables = ["mqs"]
-  s.files = [".gitignore", ".travis.yml", "Gemfile", "LICENSE.txt", "README.md", "Rakefile", "aliyun-mqs.gemspec", "bin/mqs", "lib/aliyun/mqs.rb", "lib/aliyun/mqs/cli.rb", "lib/aliyun/mqs/message.rb", "lib/aliyun/mqs/queue.rb", "lib/aliyun/mqs/request.rb", "lib/aliyun/mqs/version.rb", "spec/lib/aliyun/mqs/message_spec.rb", "spec/lib/aliyun/mqs/queue_spec.rb", "spec/lib/aliyun/mqs/request_spec.rb", "spec/spec_helper.rb"]
-  s.homepage = "https://github.com/mgampkay/aliyun-mqs"
+  s.executables = ["mns"]
+  s.files = [".gitignore", ".travis.yml", "Gemfile", "LICENSE.txt", "README.md", "Rakefile", "aliyun-mns.gemspec", "bin/mns", "lib/aliyun/mns.rb", "lib/aliyun/mns/cli.rb", "lib/aliyun/mns/message.rb", "lib/aliyun/mns/queue.rb", "lib/aliyun/mns/request.rb", "lib/aliyun/mns/version.rb", "spec/lib/aliyun/mns/message_spec.rb", "spec/lib/aliyun/mns/queue_spec.rb", "spec/lib/aliyun/mns/request_spec.rb", "spec/spec_helper.rb"]
+  s.homepage = "https://github.com/mgampkay/aliyun-mns"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.4.5"
-  s.summary = "Ruby SDK for Aliyun MQS (non-official)"
-  s.test_files = ["spec/lib/aliyun/mqs/message_spec.rb", "spec/lib/aliyun/mqs/queue_spec.rb", "spec/lib/aliyun/mqs/request_spec.rb", "spec/spec_helper.rb"]
+  s.summary = "Ruby SDK for Aliyun mns (non-official)"
+  s.test_files = ["spec/lib/aliyun/mns/message_spec.rb", "spec/lib/aliyun/mns/queue_spec.rb", "spec/lib/aliyun/mns/request_spec.rb", "spec/spec_helper.rb"]
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
