@@ -1,4 +1,4 @@
-module Aliyun::mns
+module Aliyun::Mns
   class Queue
     attr_reader :name
 
@@ -57,12 +57,9 @@ module Aliyun::mns
     end
 
     def batch_peek_message number_of_messages=16
-      p '1'
       result = Request.get(messages_path, params: {peekonly: true, numOfMessages: number_of_messages})
       messages = Hash.xml_array(result, "Messages")
-      p '3'
-      messages.map{|message| 
-        p 'x'
+      messages.map{|message|
         BatchMessages.new(self, message)
       }
     end

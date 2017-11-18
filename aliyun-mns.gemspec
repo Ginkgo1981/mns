@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-# stub: aliyun-mns 0.1.1 ruby lib
+# stub: aliyun-mns 0.1.2 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "aliyun-mns"
-  s.version = "0.1.2"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = [".gitignore", ".travis.yml", "Gemfile", "LICENSE.txt", "README.md", "Rakefile", "aliyun-mns.gemspec", "bin/mns", "lib/aliyun/mns.rb", "lib/aliyun/mns/cli.rb", "lib/aliyun/mns/message.rb", "lib/aliyun/mns/queue.rb", "lib/aliyun/mns/request.rb", "lib/aliyun/mns/version.rb", "spec/lib/aliyun/mns/message_spec.rb", "spec/lib/aliyun/mns/queue_spec.rb", "spec/lib/aliyun/mns/request_spec.rb", "spec/spec_helper.rb"]
   s.homepage = "https://github.com/mgampkay/aliyun-mns"
   s.licenses = ["MIT"]
-  s.rubygems_version = "2.4.5"
+  s.rubygems_version = "2.5.1"
   s.summary = "Ruby SDK for Aliyun mns (non-official)"
   s.test_files = ["spec/lib/aliyun/mns/message_spec.rb", "spec/lib/aliyun/mns/queue_spec.rb", "spec/lib/aliyun/mns/request_spec.rb", "spec/spec_helper.rb"]
 

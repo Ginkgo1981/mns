@@ -1,5 +1,5 @@
 require 'base64'
-module Aliyun::mns
+module Aliyun::Mns
 
   class RequestException < Exception
     attr_reader :content
@@ -19,16 +19,11 @@ module Aliyun::mns
     class << self
       [:get, :delete, :put, :post].each do |m|
         define_method m do |*args, &block|
-          p 'aaa'
           options = {method: m, path: args[0], mns_headers: {}, params: {}}
-          p 'bbb'
           options.merge!(args[1]) if args[1].is_a?(Hash)
-          p 'ccc'
-          request = Aliyun::mns::Request.new(options)
+          request = Aliyun::Mns::Request.new(options)
           block.call(request) if block
-          p 'eee'
           request.execute
-          p 'ddd'
         end
       end
     end
@@ -38,9 +33,7 @@ module Aliyun::mns
         host: host,
         path: path
       }
-      p conf
       conf.merge!(query: params.to_query) unless params.empty?
-      p 'xxxxxxxxxxxxxxxxxx'
       @uri = URI::HTTP.build(conf)
       p @uri
       @method = method
@@ -61,9 +54,7 @@ module Aliyun::mns
     end
 
     def execute
-      #date = DateTime.now.httpdate
-      date = DateTime.civil(2015, 12, 15, 8, 31, 30, 0).httpdate
-      p date
+      date = DateTime.now.httpdate
       headers =  {
         "Authorization" => authorization(date),
         "Content-Length" => content_length || 0,
@@ -73,37 +64,25 @@ module Aliyun::mns
         "Host" => uri.host
       }.merge(mns_headers).reject{|k,v| v.nil?}
       begin
-        p method
-        p uri.to_s
-        p headers
         RestClient.send *[method, uri.to_s, body, headers].compact
-      #rescue RestClient::Exception => ex
-        #raise RequestException.new(ex)
+      rescue RestClient::Exception => ex
+        raise RequestException.new(ex)
       end
     end
 
     private
     def configuration
-      Aliyun::mns.configuration
+      Aliyun::Mns.configuration
     end
 
     def authorization date
-
       canonical_resource = [uri.path, uri.query].compact.join("?")
-      p canonical_resource
       canonical_mq_headers = mns_headers.sort.collect{|k,v| "#{k.downcase}:#{v}"}.join("\n")
-      p canonical_mq_headers
       method = self.method.to_s.upcase
       signature = [method, content_md5 || "" , content_type || "" , date, canonical_mq_headers, canonical_resource].join("\n")
-      p signature
-      signature = 'GET
-
-
-Tue, 15 Dec 2015 08:31:30 GMT
-x-mns-version:2015-06-06
-/queues/captcha-staging/messages?peekonly=true&numOfMessages=10'
-      sha1 = Digest::HMAC.digest(signature, key, Digest::SHA1)
-      "MNS #{access_id}:#{Base64.encode64(sha1).chop}"
+       sha1_digest = OpenSSL::Digest.new('sha1')
+       digest = OpenSSL::HMAC.digest(sha1_digest, key, signature)
+      "MNS #{access_id}:#{Base64.encode64(digest).chop}"
     end
 
   end

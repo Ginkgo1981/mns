@@ -1,3 +1,15 @@
+
+Aliyun::Mns.configure do |config|
+  config.access_id = 'ACSQtFeMnhUE2xzJ'
+  config.key = "am1YV0mi1L"
+  config.host = '1923146655571604.mns.cn-hangzhou.aliyuncs.com'
+end
+queue = Aliyun::Mns::Queue["weibo"]
+queue.peek_message
+
+
+
+
 # aliyun-mqs
 [![Build Status](https://travis-ci.org/skinnyworm/aliyun-mqs.svg)](https://travis-ci.org/skinnyworm/aliyun-mqs) [![Code Climate](https://codeclimate.com/github/skinnyworm/aliyun-mqs.png)](https://codeclimate.com/github/skinnyworm/aliyun-mqs) [![Code Coverage](https://codeclimate.com/github/skinnyworm/aliyun-mqs/coverage.png)](https://codeclimate.com/github/skinnyworm/aliyun-mqs) [![Gem Version](https://badge.fury.io/rb/aliyun-mqs.svg)](http://badge.fury.io/rb/aliyun-mqs)
 

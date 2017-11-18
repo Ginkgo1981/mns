@@ -20,11 +20,20 @@ class Hash
 end
 
 module Aliyun
-  module mns
+  module Mns
     require 'aliyun/mns/queue'
     require 'aliyun/mns/message'
     require 'aliyun/mns/request'
     require 'aliyun/mns/cli'
+
+
+    # Aliyun::Mns.configure do |config|
+    #   config.access_id = 'ACSQtFeMnhUE2xzJ'
+    #   config.key = "am1YV0mi1L"
+    #   config.host = '1923146655571604.mns.cn-hangzhou.aliyuncs.com'
+    # end
+
+
 
     class << self
       def configuration
